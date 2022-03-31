@@ -1,14 +1,15 @@
 import socket
+BSIZE = 1000
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s.bind(("", 8000))
 
-s = socket.socket(socket.AF_INET)
-s.bind(("127.0.0.1", 9000))
-s.listen(5)
-ds,caddr = s.accept()
+data,caddr = s.recvfrom(BSIZE)
 
-print(s)
-print(ds)
+# print(s)
+
+print(data.decode())
 print(caddr)
 
-message = ds.recv(1000)
+s.sendto("Nice to see you, Client".encode(),caddr)
 
-print(message.decode())
+s.close()

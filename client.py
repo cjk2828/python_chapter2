@@ -1,7 +1,13 @@
 import socket
+BSIZE = 1000
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+# s.bind(("",8001))
 
-s = socket.socket()
-s.connect(("127.0.0.1",9000))
-print(s)
+s.sendto("Hello UDP server".encode(),("127.0.0.1",8000))
+# print(s)
 
-s.send("Hello socket".encode())
+reply, saddr = s.recvfrom(BSIZE)
+
+print(reply.decode())
+print(saddr)
+s.close()
