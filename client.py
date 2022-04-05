@@ -1,13 +1,22 @@
 import socket
+
+host = '203.250.133.88'
+port = 10070
 BSIZE = 1000
+
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 # s.bind(("",8001))
 
-s.sendto("Hello UDP server".encode(),("127.0.0.1",8000))
-# print(s)
+server_address = (host,port)
 
-reply, saddr = s.recvfrom(BSIZE)
+message = input("Enter message : ")
 
-print(reply.decode())
-print(saddr)
+try:
+    s.sendto(message.encode(),server_address)
+    reply, saddr = s.recvfrom(BSIZE)
+    print(reply.decode())
+    print(saddr)
+except Exception as e:
+    print("Exception: {}".format(e))
+
 s.close()
