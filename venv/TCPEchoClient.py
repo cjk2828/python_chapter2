@@ -1,7 +1,7 @@
 import socket
 
 host = '203.250.133.88'
-port = 12282
+port = 11234
 BUFF_SIZE = 128
 
 sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)

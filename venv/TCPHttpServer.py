@@ -16,7 +16,7 @@ conn_sock.listen(BACKLOG)
 while True:
     print("\nwaiting for request... ")
     data_sock, address = conn_sock.accept()
-    data_sock.sendall("HTTP/1.0 200 OK\r\n"
+    data_sock.sendall("HTTP/1.1 200 OK\r\n"
           "Context-Type: text/html\r\n\r\n"
           "<HTML><BODY>"
           "<H1>Hello,World!</H1>"
